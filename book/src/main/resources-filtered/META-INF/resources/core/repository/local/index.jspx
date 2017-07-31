@@ -60,11 +60,5 @@ along with semanticcms-core-repository-local.  If not, see <http://www.gnu.org/l
 				<li><ao:a href="@{documented.scm.url}">GitHub</ao:a></li>
 			</ul>
 		</section:section>
-		<section:section label="Modules">
-			<ul>
-				<li><core:link book="/core/repository/local" page="/index.jspx" /></li>
-				<li><core:link book="/core/repository/missing" page="/index.jspx" /></li>
-			</ul>
-		</section:section>
 	</core:page>
 </jsp:root>
