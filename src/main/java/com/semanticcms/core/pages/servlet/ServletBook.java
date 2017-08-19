@@ -1,26 +1,26 @@
 /*
- * semanticcms-core-repository-local - SemanticCMS pages and associated resources produced by the local servlet container.
+ * semanticcms-core-pages-servlet - SemanticCMS pages produced by the local servlet container.
  * Copyright (C) 2014, 2015, 2016, 2017  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
  *
- * This file is part of semanticcms-core-repository-local.
+ * This file is part of semanticcms-core-pages-servlet.
  *
- * semanticcms-core-repository-local is free software: you can redistribute it and/or modify
+ * semanticcms-core-pages-servlet is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * semanticcms-core-repository-local is distributed in the hope that it will be useful,
+ * semanticcms-core-pages-servlet is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with semanticcms-core-repository-local.  If not, see <http://www.gnu.org/licenses/>.
+ * along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.semanticcms.core.repository.local;
+package com.semanticcms.core.pages.servlet;
 
 import com.aoindustries.util.AoCollections;
 import com.aoindustries.util.StringUtility;
@@ -30,7 +30,7 @@ import com.semanticcms.core.model.Copyright;
 import com.semanticcms.core.model.PageRef;
 import com.semanticcms.core.model.ParentRef;
 import com.semanticcms.core.model.ResourceRef;
-import com.semanticcms.core.repository.Book;
+import com.semanticcms.core.pages.Book;
 import com.semanticcms.core.resources.ResourceStore;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -50,7 +50,7 @@ import javax.servlet.ServletContext;
 /**
  * A book where the pages in invoked locally.
  */
-public class LocalBook extends Book {
+public class ServletBook extends Book {
 
 	private static final String DEFAULT_DOMAIN = "localhost";
 
@@ -79,7 +79,7 @@ public class LocalBook extends Book {
 		return bookProps.getProperty(key);
 	}
 
-	public LocalBook(
+	public ServletBook(
 		ServletContext servletContext,
 		String name,
 		Collection<String> resourceDirectories,

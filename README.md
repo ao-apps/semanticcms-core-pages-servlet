@@ -1,4 +1,4 @@
-# [<img src="ao-logo.png" alt="AO Logo" width="35" height="40">](https://aoindustries.com/) [SemanticCMS](https://semanticcms.com/) / [Core](https://semanticcms.com/core/) / [Repository](https://semanticcms.com/core/repository/) / [Local](https://semanticcms.com/core/repository/local/)
+# [<img src="ao-logo.png" alt="AO Logo" width="35" height="40">](https://aoindustries.com/) [SemanticCMS](https://semanticcms.com/) / [Core](https://semanticcms.com/core/) / [Pages](https://semanticcms.com/core/pages/) / [Servlet](https://semanticcms.com/core/pages/servlet/)
 <p>
 	<a href="https://aoindustries.com/life-cycle#project-alpha">
 		<img src="https://semanticcms.com/ao-badges/project-alpha.svg" alt="project: alpha" />
@@ -24,14 +24,14 @@
 	</a>
 </p>
 
-[SemanticCMS](https://semanticcms.com/) pages and associated resources produced by the local servlet container.
+[SemanticCMS](https://semanticcms.com/) pages produced by the local servlet container.
 
 ## Project Links
-* [Project Home](https://semanticcms.com/core/repository/local/)
-* [Changelog](https://semanticcms.com/core/repository/local/changelog)
-* [API Docs](https://semanticcms.com/core/repository/local/apidocs/)
-* [Maven Central Repository](https://search.maven.org/#search%7Cgav%7C1%7Cg:%22com.semanticcms%22%20AND%20a:%22semanticcms-core-repository-local%22)
-* [GitHub](https://github.com/aoindustries/semanticcms-core-repository-local)
+* [Project Home](https://semanticcms.com/core/pages/servlet/)
+* [Changelog](https://semanticcms.com/core/pages/servlet/changelog)
+* [API Docs](https://semanticcms.com/core/pages/servlet/apidocs/)
+* [Maven Central Repository](https://search.maven.org/#search%7Cgav%7C1%7Cg:%22com.semanticcms%22%20AND%20a:%22semanticcms-core-pages-servlet%22)
+* [GitHub](https://github.com/aoindustries/semanticcms-core-pages-servlet)
 
 ## Contact Us
 For questions or support, please [contact us](https://aoindustries.com/contact):
