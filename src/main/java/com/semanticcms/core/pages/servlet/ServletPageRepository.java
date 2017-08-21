@@ -28,7 +28,7 @@ import com.aoindustries.validation.ValidationException;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.pages.CaptureLevel;
 import com.semanticcms.core.pages.PageNotFoundException;
-import com.semanticcms.core.pages.Pages;
+import com.semanticcms.core.pages.PageRepository;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,18 +37,18 @@ import javax.servlet.ServletContext;
 /**
  * Accesses pages from servlets in the local {@link ServletContext}.
  */
-public class ServletPages implements Pages {
+public class ServletPageRepository implements PageRepository {
 
-	private static final String INSTANCES_SERVLET_CONTEXT_KEY = ServletPages.class.getName() + ".instances";
+	private static final String INSTANCES_SERVLET_CONTEXT_KEY = ServletPageRepository.class.getName() + ".instances";
 
 	/**
 	 * Gets the servlet repository for the given context and prefix.
-	 * Only one {@link ServletPages} is created per unique context and prefix.
+	 * Only one {@link ServletPageRepository} is created per unique context and prefix.
 	 *
 	 * @param  path  Must be a {@link Path valid path}.
 	 *               Any trailing slash "/" will be stripped.
 	 */
-	public static ServletPages getInstance(ServletContext servletContext, Path path) {
+	public static ServletPageRepository getInstance(ServletContext servletContext, Path path) {
 		// Strip trailing '/' to normalize
 		{
 			String pathStr = path.toString();
@@ -65,20 +65,20 @@ public class ServletPages implements Pages {
 			}
 		}
 
-		Map<Path,ServletPages> instances;
+		Map<Path,ServletPageRepository> instances;
 		synchronized(servletContext) {
 			@SuppressWarnings("unchecked")
-			Map<Path,ServletPages> map = (Map<Path,ServletPages>)servletContext.getAttribute(INSTANCES_SERVLET_CONTEXT_KEY);
+			Map<Path,ServletPageRepository> map = (Map<Path,ServletPageRepository>)servletContext.getAttribute(INSTANCES_SERVLET_CONTEXT_KEY);
 			if(map == null) {
-				map = new HashMap<Path,ServletPages>();
+				map = new HashMap<Path,ServletPageRepository>();
 				servletContext.setAttribute(INSTANCES_SERVLET_CONTEXT_KEY, map);
 			}
 			instances = map;
 		}
 		synchronized(instances) {
-			ServletPages repository = instances.get(path);
+			ServletPageRepository repository = instances.get(path);
 			if(repository == null) {
-				repository = new ServletPages(servletContext, path);
+				repository = new ServletPageRepository(servletContext, path);
 				instances.put(path, repository);
 			}
 			return repository;
@@ -89,7 +89,7 @@ public class ServletPages implements Pages {
 	final Path path;
 	final String prefix;
 
-	private ServletPages(ServletContext servletContext, Path path) {
+	private ServletPageRepository(ServletContext servletContext, Path path) {
 		this.servletContext = servletContext;
 		this.path = path;
 		String pathStr = path.toString();
