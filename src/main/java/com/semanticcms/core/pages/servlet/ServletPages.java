@@ -27,8 +27,8 @@ import com.aoindustries.net.Path;
 import com.aoindustries.validation.ValidationException;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.pages.CaptureLevel;
+import com.semanticcms.core.pages.PageNotFoundException;
 import com.semanticcms.core.pages.Pages;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -141,7 +141,7 @@ public class ServletPages implements Pages {
 	}
 
 	@Override
-	public Page getPage(Path path, CaptureLevel captureLevel) throws IOException, FileNotFoundException {
+	public Page getPage(Path path, CaptureLevel captureLevel) throws IOException, PageNotFoundException {
 		throw new NotImplementedException();
 	}
 }
