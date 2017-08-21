@@ -76,12 +76,12 @@ public class ServletPages implements Pages {
 			instances = map;
 		}
 		synchronized(instances) {
-			ServletPages store = instances.get(path);
-			if(store == null) {
-				store = new ServletPages(servletContext, path);
-				instances.put(path, store);
+			ServletPages repository = instances.get(path);
+			if(repository == null) {
+				repository = new ServletPages(servletContext, path);
+				instances.put(path, repository);
 			}
-			return store;
+			return repository;
 		}
 	}
 
@@ -121,7 +121,23 @@ public class ServletPages implements Pages {
 
 	@Override
 	public boolean exists(Path path) throws IOException {
-		throw new NotImplementedException();
+		String pathStr = path.toString();
+		String servletPath;
+		int prefixLen = prefix.length();
+		if(prefixLen == 0) {
+			servletPath = pathStr;
+		} else {
+			int len =
+				prefixLen
+				+ pathStr.length();
+			servletPath =
+				new StringBuilder(len)
+				.append(prefix)
+				.append(pathStr)
+				.toString();
+			assert servletPath.length() == len;
+		}
+		return servletContext.getRequestDispatcher(servletPath) != null;
 	}
 
 	@Override
