@@ -120,6 +120,11 @@ public class ServletPageRepository implements PageRepository {
 	}
 
 	@Override
+	public boolean isAvailable() {
+		return true;
+	}
+
+	@Override
 	public boolean exists(Path path) throws IOException {
 		String pathStr = path.toString();
 		String servletPath;
