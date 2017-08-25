@@ -124,6 +124,9 @@ public class ServletPageRepository extends LocalPageRepository {
 		return true;
 	}
 
+	/**
+	 * TODO: Can we use an annotation on servlets to ensure to not invoke non-page servlets?
+	 */
 	@Override
 	public boolean exists(Path path) throws IOException {
 		String pathStr = path.toString();
@@ -145,6 +148,9 @@ public class ServletPageRepository extends LocalPageRepository {
 		return servletContext.getRequestDispatcher(servletPath) != null;
 	}
 
+	/**
+	 * TODO: Can we use an annotation on servlets to ensure to not invoke non-page servlets?
+	 */
 	@Override
 	public Page getPage(Path path, CaptureLevel captureLevel) throws IOException, PageNotFoundException {
 		throw new NotImplementedException();
