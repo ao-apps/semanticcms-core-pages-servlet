@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-pages-servlet - SemanticCMS pages produced by the local servlet container.
- * Copyright (C) 2017  AO Industries, Inc.
+ * Copyright (C) 2017, 2018  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -27,11 +27,11 @@ import com.aoindustries.net.Path;
 import com.aoindustries.validation.ValidationException;
 import com.semanticcms.core.model.Page;
 import com.semanticcms.core.pages.CaptureLevel;
-import com.semanticcms.core.pages.PageNotFoundException;
 import com.semanticcms.core.pages.local.LocalPageRepository;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 
 /**
@@ -128,7 +128,7 @@ public class ServletPageRepository extends LocalPageRepository {
 	 * TODO: Can we use an annotation on servlets to ensure to not invoke non-page servlets?
 	 */
 	@Override
-	public boolean exists(Path path) throws IOException {
+	public Page getPage(Path path, CaptureLevel captureLevel) throws IOException {
 		String pathStr = path.toString();
 		String servletPath;
 		int prefixLen = prefix.length();
@@ -145,14 +145,9 @@ public class ServletPageRepository extends LocalPageRepository {
 				.toString();
 			assert servletPath.length() == len;
 		}
-		return servletContext.getRequestDispatcher(servletPath) != null;
-	}
-
-	/**
-	 * TODO: Can we use an annotation on servlets to ensure to not invoke non-page servlets?
-	 */
-	@Override
-	public Page getPage(Path path, CaptureLevel captureLevel) throws IOException, PageNotFoundException {
+		RequestDispatcher dispatcher = servletContext.getRequestDispatcher(servletPath);
+		if(dispatcher == null) return null;
+		// TODO: How to handle redirects?
 		throw new NotImplementedException();
 	}
 }
