@@ -22,11 +22,9 @@
  */
 package com.semanticcms.core.pages.servlet;
 
-import com.aoindustries.lang.NotImplementedException;
 import com.aoindustries.net.Path;
+import com.aoindustries.util.Tuple2;
 import com.aoindustries.validation.ValidationException;
-import com.semanticcms.core.model.Page;
-import com.semanticcms.core.pages.CaptureLevel;
 import com.semanticcms.core.pages.local.LocalPageRepository;
 import java.io.IOException;
 import java.util.HashMap;
@@ -42,8 +40,8 @@ public class ServletPageRepository extends LocalPageRepository {
 	private static final String INSTANCES_SERVLET_CONTEXT_KEY = ServletPageRepository.class.getName() + ".instances";
 
 	/**
-	 * Gets the servlet repository for the given context and prefix.
-	 * Only one {@link ServletPageRepository} is created per unique context and prefix.
+	 * Gets the servlet repository for the given context and path.
+	 * Only one {@link ServletPageRepository} is created per unique context and path.
 	 *
 	 * @param  path  Must be a {@link Path valid path}.
 	 *               Any trailing slash "/" will be stripped.
@@ -85,33 +83,8 @@ public class ServletPageRepository extends LocalPageRepository {
 		}
 	}
 
-	final ServletContext servletContext;
-	final Path path;
-	final String prefix;
-
 	private ServletPageRepository(ServletContext servletContext, Path path) {
-		this.servletContext = servletContext;
-		this.path = path;
-		String pathStr = path.toString();
-		this.prefix = pathStr.equals("/") ? "" : pathStr;
-	}
-
-	public ServletContext getServletContext() {
-		return servletContext;
-	}
-
-	/**
-	 * Gets the path, without any trailing slash except for "/".
-	 */
-	public Path getPath() {
-		return path;
-	}
-
-	/**
-	 * Gets the prefix useful for direct path concatenation, which is the path itself except empty string for "/".
-	 */
-	public String getPrefix() {
-		return prefix;
+		super(servletContext, path);
 	}
 
 	@Override
@@ -119,16 +92,13 @@ public class ServletPageRepository extends LocalPageRepository {
 		return "servlet:" + prefix;
 	}
 
-	@Override
-	public boolean isAvailable() {
-		return true;
-	}
-
 	/**
 	 * TODO: Can we use an annotation on servlets to ensure to not invoke non-page servlets?
+	 * TODO: Or a central registry of expected servlets?  We don't want external requests being
+	 *       mapped onto arbitrary servlets willy-nilly.
 	 */
 	@Override
-	public Page getPage(Path path, CaptureLevel captureLevel) throws IOException {
+	protected Tuple2<String,RequestDispatcher> getRequestDispatcher(Path path) throws IOException {
 		String pathStr = path.toString();
 		String servletPath;
 		int prefixLen = prefix.length();
@@ -146,8 +116,10 @@ public class ServletPageRepository extends LocalPageRepository {
 			assert servletPath.length() == len;
 		}
 		RequestDispatcher dispatcher = servletContext.getRequestDispatcher(servletPath);
-		if(dispatcher == null) return null;
-		// TODO: How to handle redirects?
-		throw new NotImplementedException();
+		if(dispatcher != null) {
+			return new Tuple2<String, RequestDispatcher>(servletPath, dispatcher);
+		} else {
+			return null;
+		}
 	}
 }
