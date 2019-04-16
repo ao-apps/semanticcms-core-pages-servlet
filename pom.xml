@@ -65,11 +65,11 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 							<links>
 								<link>${javac.link.javaApi}</link>
 								<link>${javac.link.javaeeApi.6}</link>
-								<link>https://aoindustries.com/ao-lang/apidocs</link>
-								<link>https://aoindustries.com/ao-net-types/apidocs</link>
-								<link>https://semanticcms.com/core/model/apidocs</link>
-								<link>https://semanticcms.com/core/pages/apidocs</link>
-								<link>https://semanticcms.com/core/pages/local/apidocs</link>
+								<link>https://aoindustries.com/ao-lang/apidocs/</link>
+								<link>https://aoindustries.com/ao-net-types/apidocs/</link>
+								<link>https://semanticcms.com/core/model/apidocs/</link>
+								<link>https://semanticcms.com/core/pages/apidocs/</link>
+								<link>https://semanticcms.com/core/pages/local/apidocs/</link>
 							</links>
 						</configuration>
 					</plugin>
