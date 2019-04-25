@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-pages-servlet - SemanticCMS pages produced by the local servlet container.
- * Copyright (C) 2017, 2018  AO Industries, Inc.
+ * Copyright (C) 2017, 2018, 2019  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -24,7 +24,6 @@ package com.semanticcms.core.pages.servlet;
 
 import com.aoindustries.net.Path;
 import com.aoindustries.util.Tuple2;
-import com.aoindustries.validation.ValidationException;
 import com.semanticcms.core.pages.local.LocalPageRepository;
 import java.io.IOException;
 import java.util.HashMap;
@@ -60,7 +59,7 @@ public class ServletPageRepository extends LocalPageRepository {
 			@SuppressWarnings("unchecked")
 			Map<Path,ServletPageRepository> map = (Map<Path,ServletPageRepository>)servletContext.getAttribute(INSTANCES_SERVLET_CONTEXT_KEY);
 			if(map == null) {
-				map = new HashMap<Path,ServletPageRepository>();
+				map = new HashMap<>();
 				servletContext.setAttribute(INSTANCES_SERVLET_CONTEXT_KEY, map);
 			}
 			instances = map;
@@ -109,7 +108,7 @@ public class ServletPageRepository extends LocalPageRepository {
 		}
 		RequestDispatcher dispatcher = servletContext.getRequestDispatcher(servletPath);
 		if(dispatcher != null) {
-			return new Tuple2<String, RequestDispatcher>(servletPath, dispatcher);
+			return new Tuple2<>(servletPath, dispatcher);
 		} else {
 			return null;
 		}
