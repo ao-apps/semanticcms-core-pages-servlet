@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-pages-servlet - SemanticCMS pages produced by the local servlet container.
- * Copyright (C) 2017, 2018, 2019  AO Industries, Inc.
+ * Copyright (C) 2017, 2018, 2019, 2020  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -26,17 +26,42 @@ import com.aoindustries.net.Path;
 import com.aoindustries.util.Tuple2;
 import com.semanticcms.core.pages.local.LocalPageRepository;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 /**
  * Accesses pages from servlets in the local {@link ServletContext}.
  */
 public class ServletPageRepository extends LocalPageRepository {
 
-	private static final String INSTANCES_SERVLET_CONTEXT_KEY = ServletPageRepository.class.getName() + ".instances";
+	@WebListener
+	public static class Initializer implements ServletContextListener {
+		@Override
+		public void contextInitialized(ServletContextEvent event) {
+			getInstances(event.getServletContext());
+		}
+		@Override
+		public void contextDestroyed(ServletContextEvent event) {
+			// Do nothing
+		}
+	}
+
+	private static final String INSTANCES_APPLICATION_ATTRIBUTE = ServletPageRepository.class.getName() + ".instances";
+
+	private static ConcurrentMap<Path,ServletPageRepository> getInstances(ServletContext servletContext) {
+		@SuppressWarnings("unchecked")
+		ConcurrentMap<Path,ServletPageRepository> instances = (ConcurrentMap<Path,ServletPageRepository>)servletContext.getAttribute(INSTANCES_APPLICATION_ATTRIBUTE);
+		if(instances == null) {
+			instances = new ConcurrentHashMap<>();
+			servletContext.setAttribute(INSTANCES_APPLICATION_ATTRIBUTE, instances);
+		}
+		return instances;
+	}
 
 	/**
 	 * Gets the servlet repository for the given context and path.
@@ -54,24 +79,14 @@ public class ServletPageRepository extends LocalPageRepository {
 			}
 		}
 
-		Map<Path,ServletPageRepository> instances;
-		synchronized(servletContext) {
-			@SuppressWarnings("unchecked")
-			Map<Path,ServletPageRepository> map = (Map<Path,ServletPageRepository>)servletContext.getAttribute(INSTANCES_SERVLET_CONTEXT_KEY);
-			if(map == null) {
-				map = new HashMap<>();
-				servletContext.setAttribute(INSTANCES_SERVLET_CONTEXT_KEY, map);
-			}
-			instances = map;
+		ConcurrentMap<Path,ServletPageRepository> instances = getInstances(servletContext);
+		ServletPageRepository repository = instances.get(path);
+		if(repository == null) {
+			repository = new ServletPageRepository(servletContext, path);
+			ServletPageRepository existing = instances.putIfAbsent(path, repository);
+			if(existing != null) repository = existing;
 		}
-		synchronized(instances) {
-			ServletPageRepository repository = instances.get(path);
-			if(repository == null) {
-				repository = new ServletPageRepository(servletContext, path);
-				instances.put(path, repository);
-			}
-			return repository;
-		}
+		return repository;
 	}
 
 	private ServletPageRepository(ServletContext servletContext, Path path) {
