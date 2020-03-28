@@ -54,6 +54,11 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 		<tag>HEAD</tag>
 	</scm>
 
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/aoindustries/semanticcms-core-pages-servlet/issues</url>
+	</issueManagement>
+
 	<dependencyManagement>
 		<dependencies>
 			<!-- Java EE -->
