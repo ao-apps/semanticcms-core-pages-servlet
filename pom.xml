@@ -47,7 +47,6 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 	<inceptionYear>2017</inceptionYear>
 
 	<scm>
-		<!-- Can't inherit due to multi-module -->
 		<connection>scm:git:git://github.com/aoindustries/semanticcms-core-pages-servlet.git</connection>
 		<developerConnection>scm:git:git@github.com:aoindustries/semanticcms-core-pages-servlet.git</developerConnection>
 		<url>https://github.com/aoindustries/semanticcms-core-pages-servlet</url>
