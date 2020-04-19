@@ -39,7 +39,7 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 		<documented.shortTitle>Servlet</documented.shortTitle>
 		<documented.description>SemanticCMS pages produced by the local servlet container.</documented.description>
 
-		<description.html><![CDATA[Documentation for <a target="_top" href="${project.url}">${documented.name}</a> in <a target="_top" href="https://semanticcms.com/">SemanticCMS</a> format.]]></description.html>
+		<description.html><![CDATA[Documentation for <a target="${javadoc.target}" href="${project.url}">${documented.name}</a> in <a target="${javadoc.target}" href="https://semanticcms.com/">SemanticCMS</a> format.]]></description.html>
 	</properties>
 
 	<name>SemanticCMS Core Pages Servlet² Book</name>
