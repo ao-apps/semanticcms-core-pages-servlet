@@ -35,7 +35,7 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 		<ao:forward page="index.html" />
 	</c:if>
 	<core:page
-		title="@{documented.name} @{com.semanticcms:semanticcms-core-pages-servlet:pom.version} API Docs"
+		title="@{documented.name} ${ao:getProjectVersion('./', 'com.semanticcms', 'semanticcms-core-pages-servlet', '¿@{project.version}?')} API Docs"
 		shortTitle="API Docs"
 		datePublished="2017-07-31T18:28:59-0500"
 		dateModified="${ao:getLastModified('index.html')}"
