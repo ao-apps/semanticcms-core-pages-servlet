@@ -1,6 +1,6 @@
 /*
  * semanticcms-core-pages-servlet - SemanticCMS pages produced by the local servlet container.
- * Copyright (C) 2017, 2018, 2019, 2020  AO Industries, Inc.
+ * Copyright (C) 2017, 2018, 2019, 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -53,9 +53,9 @@ public class ServletPageRepository extends LocalPageRepository {
 
 	private static final String INSTANCES_APPLICATION_ATTRIBUTE = ServletPageRepository.class.getName() + ".instances";
 
-	private static ConcurrentMap<Path,ServletPageRepository> getInstances(ServletContext servletContext) {
+	private static ConcurrentMap<Path, ServletPageRepository> getInstances(ServletContext servletContext) {
 		@SuppressWarnings("unchecked")
-		ConcurrentMap<Path,ServletPageRepository> instances = (ConcurrentMap<Path,ServletPageRepository>)servletContext.getAttribute(INSTANCES_APPLICATION_ATTRIBUTE);
+		ConcurrentMap<Path, ServletPageRepository> instances = (ConcurrentMap<Path, ServletPageRepository>)servletContext.getAttribute(INSTANCES_APPLICATION_ATTRIBUTE);
 		if(instances == null) {
 			instances = new ConcurrentHashMap<>();
 			servletContext.setAttribute(INSTANCES_APPLICATION_ATTRIBUTE, instances);
@@ -79,7 +79,7 @@ public class ServletPageRepository extends LocalPageRepository {
 			}
 		}
 
-		ConcurrentMap<Path,ServletPageRepository> instances = getInstances(servletContext);
+		ConcurrentMap<Path, ServletPageRepository> instances = getInstances(servletContext);
 		ServletPageRepository repository = instances.get(path);
 		if(repository == null) {
 			repository = new ServletPageRepository(servletContext, path);
@@ -104,7 +104,7 @@ public class ServletPageRepository extends LocalPageRepository {
 	 *       mapped onto arbitrary servlets willy-nilly.
 	 */
 	@Override
-	protected Tuple2<String,RequestDispatcher> getRequestDispatcher(Path path) throws IOException {
+	protected Tuple2<String, RequestDispatcher> getRequestDispatcher(Path path) throws IOException {
 		String pathStr = path.toString();
 		String servletPath;
 		int prefixLen = prefix.length();
