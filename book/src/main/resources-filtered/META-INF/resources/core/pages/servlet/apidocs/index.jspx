@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 semanticcms-core-pages-servlet - SemanticCMS pages produced by the local servlet container.
-Copyright (C) 2017, 2019, 2020  AO Industries, Inc.
+Copyright (C) 2017, 2019, 2020, 2021  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -37,7 +37,7 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 	<core:page
 		title="@{documented.name} ${ao:getProjectVersion('./', 'com.semanticcms', 'semanticcms-core-pages-servlet', '¿@{project.version}?')} API Docs"
 		shortTitle="API Docs"
-		datePublished="2017-07-31T18:28:59-0500"
+		datePublished="2017-07-31T18:28:59-05:00"
 		dateModified="${ao:getLastModified('index.html')}"
 	/>
 </jsp:root>
