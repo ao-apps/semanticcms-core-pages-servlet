@@ -22,8 +22,8 @@
  */
 package com.semanticcms.core.pages.servlet;
 
-import com.aoindustries.net.Path;
-import com.aoindustries.util.Tuple2;
+import com.aoapps.hodgepodge.util.Tuple2;
+import com.aoapps.net.Path;
 import com.semanticcms.core.pages.local.LocalPageRepository;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
