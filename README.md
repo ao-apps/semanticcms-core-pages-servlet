@@ -9,6 +9,7 @@
 [![license: LGPL v3](https://semanticcms.com/ao-badges/license-lgpl-3.0.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 
 [![Build](https://github.com/aoindustries/semanticcms-core-pages-servlet/workflows/Build/badge.svg?branch=master)](https://github.com/aoindustries/semanticcms-core-pages-servlet/actions?query=workflow%3ABuild)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.semanticcms/semanticcms-core-pages-servlet/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.semanticcms/semanticcms-core-pages-servlet)
 
 [SemanticCMS](https://github.com/aoindustries/semanticcms) pages produced by the local servlet container.
 
