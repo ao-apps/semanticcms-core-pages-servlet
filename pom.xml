@@ -130,6 +130,11 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 											<includes>element-list, package-list</includes>
 											<outputDirectory>${project.build.directory}/offlineLinks/com.aoapps/ao-net-types</outputDirectory>
 										</artifactItem>
+										<artifactItem>
+											<groupId>com.aoapps</groupId><artifactId>ao-servlet-util</artifactId><classifier>javadoc</classifier>
+											<includes>element-list, package-list</includes>
+											<outputDirectory>${project.build.directory}/offlineLinks/com.aoapps/ao-servlet-util</outputDirectory>
+										</artifactItem>
 										<!-- ao-javadoc-offline: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId> -->
 										<artifactItem>
 											<groupId>com.semanticcms</groupId><artifactId>semanticcms-core-pages-local</artifactId><classifier>javadoc</classifier>
@@ -153,6 +158,10 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 								<offlineLink>
 									<url>https://oss.aoapps.com/net-types/apidocs/</url>
 									<location>${project.build.directory}/offlineLinks/com.aoapps/ao-net-types</location>
+								</offlineLink>
+								<offlineLink>
+									<url>https://oss.aoapps.com/servlet-util/apidocs/</url>
+									<location>${project.build.directory}/offlineLinks/com.aoapps/ao-servlet-util</location>
 								</offlineLink>
 								<!-- ao-javadoc-offline: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId> -->
 								<offlineLink>
@@ -194,7 +203,10 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 				<groupId>com.aoapps</groupId><artifactId>ao-hodgepodge</artifactId><version>5.0.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.aoapps</groupId><artifactId>ao-net-types</artifactId><version>2.0.1${POST-SNAPSHOT}</version>
+				<groupId>com.aoapps</groupId><artifactId>ao-net-types</artifactId><version>2.0.2-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
+			</dependency>
+			<dependency>
+				<groupId>com.aoapps</groupId><artifactId>ao-servlet-util</artifactId><version>5.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<!-- javaee-web-api-bom: <groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId> -->
 			<dependency>
@@ -202,31 +214,28 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 			</dependency>
 			<!-- Transitive -->
 			<dependency>
-				<groupId>com.aoapps</groupId><artifactId>ao-collections</artifactId><version>2.0.0${POST-SNAPSHOT}</version>
+				<groupId>com.aoapps</groupId><artifactId>ao-collections</artifactId><version>3.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<dependency>
 				<groupId>com.aoapps</groupId><artifactId>ao-encoding</artifactId><version>6.0.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.aoapps</groupId><artifactId>ao-encoding-servlet</artifactId><version>4.0.0${POST-SNAPSHOT}</version>
+				<groupId>com.aoapps</groupId><artifactId>ao-encoding-servlet</artifactId><version>4.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<dependency>
 				<groupId>com.aoapps</groupId><artifactId>ao-io-buffer</artifactId><version>4.0.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId><version>5.0.1${POST-SNAPSHOT}</version>
+				<groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId><version>5.1.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<dependency>
 				<groupId>com.aoapps</groupId><artifactId>ao-servlet-subrequest</artifactId><version>2.0.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.aoapps</groupId><artifactId>ao-servlet-util</artifactId><version>4.0.0${POST-SNAPSHOT}</version>
-			</dependency>
-			<dependency>
 				<groupId>com.aoapps</groupId><artifactId>ao-tempfiles</artifactId><version>3.0.0${POST-SNAPSHOT}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.aoapps</groupId><artifactId>ao-tempfiles-servlet</artifactId><version>2.0.0${POST-SNAPSHOT}</version>
+				<groupId>com.aoapps</groupId><artifactId>ao-tempfiles-servlet</artifactId><version>3.0.0-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 			</dependency>
 			<dependency>
 				<groupId>com.aoapps</groupId><artifactId>ao-tlds</artifactId><version>2.0.0${POST-SNAPSHOT}</version>
@@ -237,6 +246,7 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 			<dependency>
 				<groupId>org.apache.commons</groupId><artifactId>commons-lang3</artifactId><version>3.12.0</version>
 			</dependency>
+			<!-- javaee-web-api-bom: <groupId>javax.servlet.jsp</groupId><artifactId>javax.servlet.jsp-api</artifactId> -->
 			<dependency>
 				<groupId>joda-time</groupId><artifactId>joda-time</artifactId><version>2.10.10</version>
 			</dependency>
@@ -248,7 +258,7 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 			</dependency>
 			<!-- BOM -->
 			<dependency>
-				<groupId>com.aoapps</groupId><artifactId>javaee-web-api-bom</artifactId><version>7.0.0${POST-SNAPSHOT}</version>
+				<groupId>com.aoapps</groupId><artifactId>javaee-web-api-bom</artifactId><version>7.0.1-SNAPSHOT<!-- ${POST-SNAPSHOT} --></version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -262,6 +272,9 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 		</dependency>
 		<dependency>
 			<groupId>com.aoapps</groupId><artifactId>ao-net-types</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.aoapps</groupId><artifactId>ao-servlet-util</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId><artifactId>javax.servlet-api</artifactId>
