@@ -41,7 +41,7 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 		<description.html><![CDATA[<a target="${javadoc.target}" href="https://semanticcms.com/">SemanticCMS</a> pages produced by the local servlet container.]]></description.html>
 		<!-- SonarQube -->
 		<sonar.projectKey>${project.groupId}:${project.artifactId}</sonar.projectKey>
-		<sonar.organization>aoindustries</sonar.organization>
+		<sonar.organization>ao-apps</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<!-- TODO: Implement tests -->
 		<sonar.coverage.exclusions>**.*</sonar.coverage.exclusions>
@@ -76,20 +76,20 @@ along with semanticcms-core-pages-servlet.  If not, see <http://www.gnu.org/lice
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://github.com/aoindustries/semanticcms-core-pages-servlet.git</connection>
-		<developerConnection>scm:git:git@github.com:aoindustries/semanticcms-core-pages-servlet.git</developerConnection>
-		<url>https://github.com/aoindustries/semanticcms-core-pages-servlet</url>
+		<connection>scm:git:git://github.com/ao-apps/semanticcms-core-pages-servlet.git</connection>
+		<developerConnection>scm:git:git@github.com:ao-apps/semanticcms-core-pages-servlet.git</developerConnection>
+		<url>https://github.com/ao-apps/semanticcms-core-pages-servlet</url>
 		<tag>HEAD</tag>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/aoindustries/semanticcms-core-pages-servlet/issues</url>
+		<url>https://github.com/ao-apps/semanticcms-core-pages-servlet/issues</url>
 	</issueManagement>
 
 	<ciManagement>
 		<system>GitHub Actions</system>
-		<url>https://github.com/aoindustries/semanticcms-core-pages-servlet/actions</url>
+		<url>https://github.com/ao-apps/semanticcms-core-pages-servlet/actions</url>
 	</ciManagement>
 
 	<repositories>
