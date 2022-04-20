@@ -41,88 +41,90 @@ import javax.servlet.annotation.WebListener;
  */
 public class ServletPageRepository extends LocalPageRepository {
 
-	@WebListener
-	public static class Initializer implements ServletContextListener {
-		@Override
-		public void contextInitialized(ServletContextEvent event) {
-			getInstances(event.getServletContext());
-		}
-		@Override
-		public void contextDestroyed(ServletContextEvent event) {
-			// Do nothing
-		}
-	}
+  @WebListener
+  public static class Initializer implements ServletContextListener {
+    @Override
+    public void contextInitialized(ServletContextEvent event) {
+      getInstances(event.getServletContext());
+    }
+    @Override
+    public void contextDestroyed(ServletContextEvent event) {
+      // Do nothing
+    }
+  }
 
-	private static final ScopeEE.Application.Attribute<ConcurrentMap<Path, ServletPageRepository>> INSTANCES_APPLICATION_ATTRIBUTE =
-		ScopeEE.APPLICATION.attribute(ServletPageRepository.class.getName() + ".instances");
+  private static final ScopeEE.Application.Attribute<ConcurrentMap<Path, ServletPageRepository>> INSTANCES_APPLICATION_ATTRIBUTE =
+    ScopeEE.APPLICATION.attribute(ServletPageRepository.class.getName() + ".instances");
 
-	private static ConcurrentMap<Path, ServletPageRepository> getInstances(ServletContext servletContext) {
-		return INSTANCES_APPLICATION_ATTRIBUTE.context(servletContext).computeIfAbsent(__ -> new ConcurrentHashMap<>());
-	}
+  private static ConcurrentMap<Path, ServletPageRepository> getInstances(ServletContext servletContext) {
+    return INSTANCES_APPLICATION_ATTRIBUTE.context(servletContext).computeIfAbsent(__ -> new ConcurrentHashMap<>());
+  }
 
-	/**
-	 * Gets the servlet repository for the given context and path.
-	 * Only one {@link ServletPageRepository} is created per unique context and path.
-	 *
-	 * @param  path  Must be a {@link Path valid path}.
-	 *               Any trailing slash "/" will be stripped.
-	 */
-	public static ServletPageRepository getInstance(ServletContext servletContext, Path path) {
-		// Strip trailing '/' to normalize
-		{
-			String pathStr = path.toString();
-			if(!pathStr.equals("/") && pathStr.endsWith("/")) {
-				path = path.prefix(pathStr.length() - 1);
-			}
-		}
+  /**
+   * Gets the servlet repository for the given context and path.
+   * Only one {@link ServletPageRepository} is created per unique context and path.
+   *
+   * @param  path  Must be a {@link Path valid path}.
+   *               Any trailing slash "/" will be stripped.
+   */
+  public static ServletPageRepository getInstance(ServletContext servletContext, Path path) {
+    // Strip trailing '/' to normalize
+    {
+      String pathStr = path.toString();
+      if (!pathStr.equals("/") && pathStr.endsWith("/")) {
+        path = path.prefix(pathStr.length() - 1);
+      }
+    }
 
-		ConcurrentMap<Path, ServletPageRepository> instances = getInstances(servletContext);
-		ServletPageRepository repository = instances.get(path);
-		if(repository == null) {
-			repository = new ServletPageRepository(servletContext, path);
-			ServletPageRepository existing = instances.putIfAbsent(path, repository);
-			if(existing != null) repository = existing;
-		}
-		return repository;
-	}
+    ConcurrentMap<Path, ServletPageRepository> instances = getInstances(servletContext);
+    ServletPageRepository repository = instances.get(path);
+    if (repository == null) {
+      repository = new ServletPageRepository(servletContext, path);
+      ServletPageRepository existing = instances.putIfAbsent(path, repository);
+      if (existing != null) {
+        repository = existing;
+      }
+    }
+    return repository;
+  }
 
-	private ServletPageRepository(ServletContext servletContext, Path path) {
-		super(servletContext, path);
-	}
+  private ServletPageRepository(ServletContext servletContext, Path path) {
+    super(servletContext, path);
+  }
 
-	@Override
-	public String toString() {
-		return "servlet:" + prefix;
-	}
+  @Override
+  public String toString() {
+    return "servlet:" + prefix;
+  }
 
-	/**
-	 * TODO: Can we use an annotation on servlets to ensure to not invoke non-page servlets?
-	 * TODO: Or a central registry of expected servlets?  We don't want external requests being
-	 *       mapped onto arbitrary servlets willy-nilly.
-	 */
-	@Override
-	protected Tuple2<String, RequestDispatcher> getRequestDispatcher(Path path) throws IOException {
-		String pathStr = path.toString();
-		String servletPath;
-		int prefixLen = prefix.length();
-		if(prefixLen == 0) {
-			servletPath = pathStr;
-		} else {
-			int len =
-				prefixLen
-				+ pathStr.length();
-			servletPath =
-				new StringBuilder(len)
-				.append(prefix)
-				.append(pathStr)
-				.toString();
-			assert servletPath.length() == len;
-		}
-		RequestDispatcher dispatcher = servletContext.getRequestDispatcher(servletPath);
-		if(dispatcher != null) {
-			return new Tuple2<>(servletPath, dispatcher);
-		} else {
-			return null;
-		}
-	}
+  /**
+   * TODO: Can we use an annotation on servlets to ensure to not invoke non-page servlets?
+   * TODO: Or a central registry of expected servlets?  We don't want external requests being
+   *       mapped onto arbitrary servlets willy-nilly.
+   */
+  @Override
+  protected Tuple2<String, RequestDispatcher> getRequestDispatcher(Path path) throws IOException {
+    String pathStr = path.toString();
+    String servletPath;
+    int prefixLen = prefix.length();
+    if (prefixLen == 0) {
+      servletPath = pathStr;
+    } else {
+      int len =
+        prefixLen
+        + pathStr.length();
+      servletPath =
+        new StringBuilder(len)
+        .append(prefix)
+        .append(pathStr)
+        .toString();
+      assert servletPath.length() == len;
+    }
+    RequestDispatcher dispatcher = servletContext.getRequestDispatcher(servletPath);
+    if (dispatcher != null) {
+      return new Tuple2<>(servletPath, dispatcher);
+    } else {
+      return null;
+    }
+  }
 }
