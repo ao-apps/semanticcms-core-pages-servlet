@@ -47,6 +47,7 @@ public class ServletPageRepository extends LocalPageRepository {
     public void contextInitialized(ServletContextEvent event) {
       getInstances(event.getServletContext());
     }
+
     @Override
     public void contextDestroyed(ServletContextEvent event) {
       // Do nothing
@@ -54,7 +55,7 @@ public class ServletPageRepository extends LocalPageRepository {
   }
 
   private static final ScopeEE.Application.Attribute<ConcurrentMap<Path, ServletPageRepository>> INSTANCES_APPLICATION_ATTRIBUTE =
-    ScopeEE.APPLICATION.attribute(ServletPageRepository.class.getName() + ".instances");
+      ScopeEE.APPLICATION.attribute(ServletPageRepository.class.getName() + ".instances");
 
   private static ConcurrentMap<Path, ServletPageRepository> getInstances(ServletContext servletContext) {
     return INSTANCES_APPLICATION_ATTRIBUTE.context(servletContext).computeIfAbsent(__ -> new ConcurrentHashMap<>());
@@ -111,13 +112,13 @@ public class ServletPageRepository extends LocalPageRepository {
       servletPath = pathStr;
     } else {
       int len =
-        prefixLen
-        + pathStr.length();
+          prefixLen
+              + pathStr.length();
       servletPath =
-        new StringBuilder(len)
-        .append(prefix)
-        .append(pathStr)
-        .toString();
+          new StringBuilder(len)
+              .append(prefix)
+              .append(pathStr)
+              .toString();
       assert servletPath.length() == len;
     }
     RequestDispatcher dispatcher = servletContext.getRequestDispatcher(servletPath);
