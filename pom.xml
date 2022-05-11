@@ -113,18 +113,6 @@ along with semanticcms-core-pages-servlet.  If not, see <https://www.gnu.org/lic
     </repository>
   </repositories>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId>
-        <configuration>
-          <!-- TODO: Clean-up Checkstyle -->
-          <failOnViolation>false</failOnViolation>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
   <profiles>
     <profile>
       <id>offlineLinks</id><activation><file><exists>src/main/java</exists></file></activation>

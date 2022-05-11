@@ -41,7 +41,10 @@ import javax.servlet.annotation.WebListener;
  */
 public class ServletPageRepository extends LocalPageRepository {
 
-  @WebListener
+  /**
+   * Initializes the Servlet page repository during {@linkplain ServletContextListener application start-up}.
+   */
+  @WebListener("Initializes the Servlet page repository during application start-up.")
   public static class Initializer implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent event) {
@@ -58,7 +61,7 @@ public class ServletPageRepository extends LocalPageRepository {
       ScopeEE.APPLICATION.attribute(ServletPageRepository.class.getName() + ".instances");
 
   private static ConcurrentMap<Path, ServletPageRepository> getInstances(ServletContext servletContext) {
-    return INSTANCES_APPLICATION_ATTRIBUTE.context(servletContext).computeIfAbsent(__ -> new ConcurrentHashMap<>());
+    return INSTANCES_APPLICATION_ATTRIBUTE.context(servletContext).computeIfAbsent(name -> new ConcurrentHashMap<>());
   }
 
   /**
@@ -69,13 +72,13 @@ public class ServletPageRepository extends LocalPageRepository {
    *               Any trailing slash "/" will be stripped.
    */
   public static ServletPageRepository getInstance(ServletContext servletContext, Path path) {
-    // Strip trailing '/' to normalize
-    {
-      String pathStr = path.toString();
-      if (!"/".equals(pathStr) && pathStr.endsWith("/")) {
-        path = path.prefix(pathStr.length() - 1);
+      // Strip trailing '/' to normalize
+      {
+        String pathStr = path.toString();
+        if (!"/".equals(pathStr) && pathStr.endsWith("/")) {
+          path = path.prefix(pathStr.length() - 1);
+        }
       }
-    }
 
     ConcurrentMap<Path, ServletPageRepository> instances = getInstances(servletContext);
     ServletPageRepository repository = instances.get(path);
