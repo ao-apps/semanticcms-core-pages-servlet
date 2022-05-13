@@ -31,4 +31,4 @@ module com.semanticcms.core.pages.servlet {
   // Transitive
   requires com.aoapps.lang; // <groupId>com.aoapps</groupId><artifactId>ao-lang</artifactId>
   requires com.semanticcms.core.pages; // <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-pages</artifactId>
-} // TODO: Avoiding rewrite-maven-plugin-4.22.2 truncation
+}
