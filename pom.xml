@@ -47,7 +47,7 @@ along with semanticcms-core-pages-servlet.  If not, see <https://www.gnu.org/lic
     <sonar.coverage.exclusions>**.*</sonar.coverage.exclusions>
   </properties>
 
-  <name>SemanticCMS Core Pages Servlet²</name>
+  <name>SemanticCMS Core Pages Servlet</name>
   <url>https://semanticcms.com/core/pages/servlet/</url>
   <description>SemanticCMS pages produced by the local servlet container.</description>
   <inceptionYear>2017</inceptionYear>

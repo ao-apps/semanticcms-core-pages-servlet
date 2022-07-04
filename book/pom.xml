@@ -36,15 +36,15 @@ along with semanticcms-core-pages-servlet.  If not, see <https://www.gnu.org/lic
     <module.name>com.semanticcms.core.pages.servlet.book</module.name>
     <!-- These values are copied from the project being documented -->
     <documented.artifactId>semanticcms-core-pages-servlet</documented.artifactId>
-    <documented.name>SemanticCMS Core Pages Servlet²</documented.name>
+    <documented.name>SemanticCMS Core Pages Servlet</documented.name>
     <documented.description>SemanticCMS pages produced by the local servlet container.</documented.description>
 
     <description.html><![CDATA[Documentation for <a target="${javadoc.target}" href="${project.url}">${documented.name}</a> in <a target="${javadoc.target}" href="https://semanticcms.com/">SemanticCMS</a> format.]]></description.html>
   </properties>
 
-  <name>SemanticCMS Core Pages Servlet² Book</name>
+  <name>SemanticCMS Core Pages Servlet Book</name>
   <url>https://semanticcms.com/core/pages/servlet/</url>
-  <description>Documentation for SemanticCMS Core Pages Servlet² in SemanticCMS format.</description>
+  <description>Documentation for SemanticCMS Core Pages Servlet in SemanticCMS format.</description>
   <inceptionYear>2017</inceptionYear>
 
   <licenses>
