@@ -23,7 +23,7 @@
 * [Project Home](https://semanticcms.com/core/pages/servlet/)
 * [Changelog](https://semanticcms.com/core/pages/servlet/changelog)
 * [API Docs](https://semanticcms.com/core/pages/servlet/apidocs/)
-* [Maven Central Repository](https://search.maven.org/artifact/com.semanticcms/semanticcms-core-pages-servlet)
+* [Maven Central Repository](https://central.sonatype.com/search?namespace=com.semanticcms&q=a%3Asemanticcms-core-pages-servlet)
 * [GitHub](https://github.com/ao-apps/semanticcms-core-pages-servlet)
 
 ## Contact Us
