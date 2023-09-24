@@ -326,11 +326,5 @@ along with semanticcms-core-pages-servlet.  If not, see <https://www.gnu.org/lic
     <dependency>
       <groupId>com.semanticcms</groupId><artifactId>semanticcms-core-pages-local</artifactId>
     </dependency>
-    <!-- Imports (Reactor build order only) -->
-    <dependency>
-      <groupId>com.aoapps</groupId><artifactId>javaee-web-api-bom</artifactId><version>7.0.1-POST-SNAPSHOT</version>
-      <type>pom</type>
-      <exclusions><exclusion><artifactId>*</artifactId><groupId>*</groupId></exclusion></exclusions>
-    </dependency>
   </dependencies>
 </project>
